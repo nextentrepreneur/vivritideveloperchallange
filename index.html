@@ -1,0 +1,119 @@
+<!doctype html>
+<html ng-app="vivriti">
+	<head>
+		<title>Vivriti Crafts Beer</title>
+        <link rel="shortcut icon" href="https://png.icons8.com/color/50/000000/beer.png" type="image/x-icon" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="lib/site.css">
+        <link rel="stylesheet" href="lib/custombootstrap.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="lib/fontawesome/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="lib/site.css" media="screen" title="no title" charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+        <script src="lib/angular/angular.min.js" charset="utf-8"></script>
+        <script src="app/app.js" charset="utf-8"></script>
+    </head>
+
+	<body ng-controller="beerListController">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Vivriti</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Careers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input ng-model="searchText" class="mr-8 form-control mr-sm-2" placeholder="Search">
+            </form>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+        <div class="panel panel-defaul">
+        <div class="panel-body col-xs-10 col-sm-10">
+            <div class="list-group">
+                <div ng-repeat="beer in beerList | filter: searchText | orderBy:'abv':reverse | filter:singleSelect" class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6">
+                            <h4>
+                                <small>
+                                    <dd style="color: darkred"><img src="https://png.icons8.com/color/50/000000/beer.png">{{beer.name}}</dd>
+                                </small>
+                            </h4>
+                        </div>
+                        <div class="col-xs-4 col-sm-4">
+                            <dl class="dl-horizontal">
+                                <dt style="color: #d08002">Beer Style:</dt>
+                                <dd style="color: purple">{{beer.style}}</dd>
+                                <dt style="color: #d08002">Alcohol By Volume:</dt>
+                                <dd style="color: purple">{{beer.abv}}</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="card col-xs-2 col-sm-2">
+                <div id="menu1">
+                        <small style="color: #d32a0e">
+                            <input type="radio" name="order" ng-value="true" ng-model="reverse">Alcohol Content: Descending</input></br>
+                            <input type="radio" name="order" ng-value="false" ng-model="reverse">Alcohol Content: Ascending</input>
+                        </small>
+                </div>
+                <br>
+                <div id="menu2">
+
+                    <label style="color: #d32a0e">List Of Beer Styles</label>
+                    <br>
+                    <label for="singleSelect"> select: </label><br>
+                    <select name="singleSelect" ng-model="singleSelect" style="color: red">
+                        <option value="">all</option>
+                        <option value="American Pale Lager">American Pale Lager</option>
+                        <option value="American Pale Ale (APA)">American Pale Ale (APA)</option>
+                        <option value="American IPA">American IPA</option>
+                        <option value="American Double / Imperial IPA">American Double / Imperial IPA</option>
+                        <option value="Oatmeal Stout">Oatmeal Stout</option>
+                        <option value="American Porter">American Porter</option>
+                        <option value="Saison / Farmhouse Ale">Saison / Farmhouse Ale</option>
+                        <option value="Belgian IPA">Belgian IPA</option>
+                        <option value="Ginja Ninja">Ginja Ninja</option>
+                        <option value="Cider">Cider</option>
+                        <option value="BrightCider">BrightCider</option>
+                        <option value="Baltic Porter">Baltic Porter</option>
+                        <option value="Tripel">Tripel</option>
+                        <option value="American Barleywine">American Barleywine</option>
+                        <option value="Winter Warmer">Winter Warmer</option>
+                        <option value="American Stout">American Stout</option>
+                        <option value="Fruit / Vegetable Beer">Fruit / Vegetable Beer</option>
+                        <option value="English Strong Ale">English Strong Ale</option>
+                        <option value="Belgian Dark Ale">Belgian Dark Ale</option>
+
+                    </select>
+                </div>
+        </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
+	</body>
+    <footer class="page-footer font-small cyan darken-3 mt-4">
+        <div class="text-center py-3">Developed By:
+            <a href="https://www.linkedin.com/in/sujit-roy-1b31ab55/">Sujit Roy</a>
+        </div>
+    </footer>
+</html>
